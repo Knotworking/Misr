@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Misr</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="salary">salary</string>
+
+    <string-array name="currency_array">
+        <item>$</item>
+        <item>€</item>
+        <item>§</item>
+    </string-array>
 </resources>

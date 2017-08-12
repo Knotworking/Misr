@@ -19,28 +19,33 @@ object MoneyCountBindingAdapter {
     @BindingAdapter(value = *arrayOf("salary", "currency"), requireAll = false)
     fun setDailyCount(textView: TextView, salary: Float, currency: String) {
         val decimalFormat = DecimalFormat.getInstance()
+        decimalFormat.minimumFractionDigits = 2
         decimalFormat.maximumFractionDigits = 2
         textView.text = "Daily Earnings: ${currency + decimalFormat.format(getMoneyEarnedSoFarToday(salary))}"
     }
 
-    fun getMoneyEarnedSoFarToday(salary: Float): Float {
+    private fun getMoneyEarnedSoFarToday(salary: Float): Float {
         val earnedPerDay = getMoneyEarnedPerDay(salary)
         return earnedPerDay * getDailyProgress()
     }
 
-    fun getDailyProgress(): Float {
+    private fun getDailyProgress(): Float {
         val calendar = Calendar.getInstance()
         val now = calendar.timeInMillis
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
+        setCalendarToMidnight(calendar)
         val passedMilliseconds = now - calendar.timeInMillis
         val passedSeconds = passedMilliseconds.toFloat() / MILLISECONDS_IN_SECOND
         return passedSeconds / SECONDS_IN_DAY
     }
 
-    fun getMoneyEarnedPerDay(salary: Float): Float {
+    private fun setCalendarToMidnight(calendar: Calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+    }
+
+    private fun getMoneyEarnedPerDay(salary: Float): Float {
         val yearly = salary * 12
         return yearly / DAYS_IN_YEAR
     }

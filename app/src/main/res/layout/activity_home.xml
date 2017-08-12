@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="user"
-            type="com.knotworking.misr.User"/>
+            type="com.knotworking.misr.User" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -17,12 +18,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:currency="@{user.currency}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:salary="@{user.salary}"
-            app:currency="@{user.currency}"/>
+            app:salary="@{user.salary}" />
 
     </android.support.constraint.ConstraintLayout>
 
