@@ -3,6 +3,7 @@
     <string name="name">Name</string>
     <string name="save">Save</string>
     <string name="salary">salary</string>
+    <string name="action_user">User</string>
 
     <string-array name="currency_array">
         <item>$</item>
