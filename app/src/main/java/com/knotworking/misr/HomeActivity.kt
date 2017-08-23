@@ -1,28 +1,28 @@
 package com.knotworking.misr
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.knotworking.misr.databinding.ActivityHomeBinding
+import com.knotworking.misr.timer.TimerActivity
 import java.util.*
+import java.util.concurrent.TimeUnit
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
     val SETUP_REQUEST = 1
     val timer = Timer()
 
     lateinit var binding: ActivityHomeBinding
-    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE)
-        getUser()
+        checkUser()
+        binding.button.setOnClickListener({
+            startActivity(Intent(this, TimerActivity::class.java))
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,12 +42,9 @@ class HomeActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getUser() {
+    private fun checkUser() {
         if (isUserSetUp()) {
-            val name = sharedPreferences.getString(Constants.NAME, "")
-            val salary = sharedPreferences.getFloat(Constants.SALARY, 0f)
-            val currency = sharedPreferences.getString(Constants.CURRENCY, "$")
-            binding.user = User(name, salary, currency)
+            binding.user = getUser()
             startTimer()
         } else {
             startActivityForResult(Intent(this, SetupActivity::class.java), SETUP_REQUEST)
@@ -55,18 +52,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
-        timer.schedule(MoneyTimer(binding), 0, 1000)
-    }
-
-    private fun isUserSetUp(): Boolean {
-        return sharedPreferences.contains(Constants.NAME) &&
-                sharedPreferences.contains(Constants.SALARY) &&
-                sharedPreferences.contains(Constants.CURRENCY)
+        timer.schedule(MoneyClock(binding), 0, TimeUnit.SECONDS.toMillis(1))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SETUP_REQUEST && isUserSetUp()) {
-            getUser()
+            checkUser()
         } else {
             finish()
         }

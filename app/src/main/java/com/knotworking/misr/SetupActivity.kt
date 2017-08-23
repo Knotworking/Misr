@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.ArrayAdapter
 import com.knotworking.misr.databinding.ActivitySetupBinding
 
@@ -27,7 +28,7 @@ class SetupActivity : AppCompatActivity() {
 
         binding.currencySpinner.adapter = adapter
 
-        sharedPreferences = getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         binding.nameEditText.setText(sharedPreferences.getString(Constants.NAME, defaultName))
         binding.salaryEditText.setText(sharedPreferences.getFloat(Constants.SALARY, defaultSalary).toString())
