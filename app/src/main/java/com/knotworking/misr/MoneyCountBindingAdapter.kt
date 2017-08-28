@@ -16,7 +16,7 @@ object MoneyCountBindingAdapter {
     val MILLISECONDS_IN_SECOND = 1000
 
     @JvmStatic
-    @BindingAdapter(value = *arrayOf("salary", "currency"), requireAll = false)
+    @BindingAdapter(value = *arrayOf("salary", "currency"), requireAll = true)
     fun setDailyCount(textView: TextView, salary: Float, currency: String) {
         val decimalFormat = DecimalFormat.getInstance()
         decimalFormat.minimumFractionDigits = 2

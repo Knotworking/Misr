@@ -11,8 +11,8 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class HomeActivity : BaseActivity() {
-    val SETUP_REQUEST = 1
-    val timer = Timer()
+    private val SETUP_REQUEST = 1
+    private val timer = Timer()
 
     lateinit var binding: ActivityHomeBinding
 
@@ -20,7 +20,7 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         checkUser()
-        binding.button.setOnClickListener({
+        binding.startTimerButton.setOnClickListener({
             startActivity(Intent(this, TimerActivity::class.java))
         })
     }
