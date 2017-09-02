@@ -3,10 +3,12 @@ package com.knotworking.misr
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.Menu
 import android.view.MenuItem
 import com.knotworking.misr.databinding.ActivityHomeBinding
 import com.knotworking.misr.timer.TimerActivity
+import com.knotworking.misr.utils.InputFilterMinMax
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -20,9 +22,12 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         checkUser()
-        binding.startTimerButton.setOnClickListener({
+        binding.timerFab.setOnClickListener({
             startActivity(Intent(this, TimerActivity::class.java))
         })
+
+        binding.minutesEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
+        binding.secondsEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

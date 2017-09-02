@@ -11,35 +11,103 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.knotworking.misr.HomeActivity">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/moneyClockTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:elevation="2dp"
+            android:padding="16dp"
+            android:textSize="20sp"
             app:currency="@{user.currency}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:salary="@{user.salary}" />
+            app:salary="@{user.salary}"
+            tools:text="$100" />
 
-        <Button
-            android:id="@+id/startTimerButton"
+        <LinearLayout
+            android:id="@+id/hhMmSs_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/button_start_timer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/moneyClockTextView"
-            app:layout_constraintVertical_bias="0.873" />
+            android:layout_above="@+id/money_editText"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    </android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/hours_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="HH"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxEms="10"
+                android:minEms="2"
+                android:nextFocusForward="@+id/minutes_editText" />
+
+            <EditText
+                android:id="@+id/minutes_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="2"
+                android:gravity="center"
+                android:hint="MM"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="2"
+                android:nextFocusForward="@+id/seconds_editText" />
+
+            <EditText
+                android:id="@+id/seconds_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="2"
+                android:gravity="center"
+                android:hint="SS"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="2" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/currency_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/money_editText"
+            android:layout_alignLeft="@id/hhMmSs_layout"
+            android:layout_alignTop="@id/money_editText"
+            android:layout_below="@id/hhMmSs_layout"
+            android:gravity="center_vertical"
+            android:text="@{user.currency}"
+            android:textSize="20sp"
+            tools:text="$" />
+
+
+        <EditText
+            android:id="@+id/money_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Money"
+            android:inputType="numberSigned"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/currency_textView" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/timer_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_timer_black_24dp"
+            android:tint="@android:color/white" />
+    </RelativeLayout>
 
 </layout>

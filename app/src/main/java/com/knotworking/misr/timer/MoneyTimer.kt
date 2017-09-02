@@ -1,6 +1,5 @@
 package com.knotworking.misr.timer
 
-import com.knotworking.misr.databinding.ActivityTimerBinding
 import com.knotworking.misr.databinding.FragmentTimerBinding
 import java.util.*
 
