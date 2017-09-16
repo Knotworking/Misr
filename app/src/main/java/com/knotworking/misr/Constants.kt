@@ -9,6 +9,4 @@ object Constants {
     const val NAME = "name"
     const val SALARY = "salary"
     const val CURRENCY = "currency"
-
-    const val ONE_SECOND = 1000f
 }

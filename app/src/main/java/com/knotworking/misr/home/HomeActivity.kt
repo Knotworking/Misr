@@ -30,7 +30,7 @@ class HomeActivity : BaseActivity() {
             startActivity(Intent(this, TimerActivity::class.java))
         })
 
-        binding.conversion = Conversion()
+        binding.conversionValues = ConversionValues()
         binding.minutesEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
         binding.secondsEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
     }

@@ -10,8 +10,8 @@
             type="com.knotworking.misr.User" />
 
         <variable
-            name="conversion"
-            type="com.knotworking.misr.home.Conversion"/>
+            name="conversionValues"
+            type="com.knotworking.misr.home.ConversionValues"/>
 
     </data>
 
@@ -47,11 +47,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="HH"
-                android:text="@={conversion.hoursString}"
-                app:hours="@{conversion.hours}"
-                app:minutes="@{conversion.minutes}"
-                app:seconds="@{conversion.seconds}"
-                app:moneyText="@{moneyEditText}"
+                android:text="@={conversionValues.hoursString}"
+                app:fromTime="@{conversionValues}"
+                app:salary="@{user.salary}"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxEms="10"
@@ -65,11 +63,9 @@
                 android:ems="2"
                 android:gravity="center"
                 android:hint="MM"
-                android:text="@={conversion.minutesString}"
-                app:hours="@{conversion.hours}"
-                app:minutes="@{conversion.minutes}"
-                app:seconds="@{conversion.seconds}"
-                app:moneyText="@{moneyEditText}"
+                android:text="@={conversionValues.minutesString}"
+                app:fromTime="@{conversionValues}"
+                app:salary="@{user.salary}"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="2"
@@ -82,11 +78,9 @@
                 android:ems="2"
                 android:gravity="center"
                 android:hint="SS"
-                android:text="@={conversion.secondsString}"
-                app:hours="@{conversion.hours}"
-                app:minutes="@{conversion.minutes}"
-                app:seconds="@{conversion.seconds}"
-                app:moneyText="@{moneyEditText}"
+                android:text="@={conversionValues.secondsString}"
+                app:fromTime="@{conversionValues}"
+                app:salary="@{user.salary}"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="2" />
@@ -115,8 +109,9 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/currency_textView"
             android:hint="Money"
-            android:text="@={conversion.moneyString}"
-            app:money="@{conversion.money}"
+            android:text="@={conversionValues.moneyString}"
+            app:fromMoney="@{conversionValues}"
+            app:salary="@{user.salary}"
             android:inputType="numberSigned"
             android:textSize="18sp" />
 
