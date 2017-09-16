@@ -8,7 +8,6 @@ import java.util.*
  */
 class MoneyClock(val binding: ActivityHomeBinding) : TimerTask() {
     override fun run() {
-        //TODO find cheaper method call
-        binding.invalidateAll()
+        binding.user.notifyChange()
     }
 }

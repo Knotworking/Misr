@@ -11,7 +11,7 @@
 
         <variable
             name="conversion"
-            type="com.knotworking.misr.home.ConversionViewModel"/>
+            type="com.knotworking.misr.home.Conversion"/>
 
     </data>
 
@@ -47,7 +47,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="HH"
-                android:text="@={conversion.hours}"
+                android:text="@={conversion.hoursString}"
+                app:hours="@{conversion.hours}"
+                app:minutes="@{conversion.minutes}"
+                app:seconds="@{conversion.seconds}"
+                app:moneyText="@{moneyEditText}"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxEms="10"
@@ -61,7 +65,11 @@
                 android:ems="2"
                 android:gravity="center"
                 android:hint="MM"
-                android:text="@={conversion.minutes}"
+                android:text="@={conversion.minutesString}"
+                app:hours="@{conversion.hours}"
+                app:minutes="@{conversion.minutes}"
+                app:seconds="@{conversion.seconds}"
+                app:moneyText="@{moneyEditText}"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="2"
@@ -74,7 +82,11 @@
                 android:ems="2"
                 android:gravity="center"
                 android:hint="SS"
-                android:text="@={conversion.seconds}"
+                android:text="@={conversion.secondsString}"
+                app:hours="@{conversion.hours}"
+                app:minutes="@{conversion.minutes}"
+                app:seconds="@{conversion.seconds}"
+                app:moneyText="@{moneyEditText}"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="2" />
@@ -103,7 +115,8 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/currency_textView"
             android:hint="Money"
-            android:text="@={conversion.money}"
+            android:text="@={conversion.moneyString}"
+            app:money="@{conversion.money}"
             android:inputType="numberSigned"
             android:textSize="18sp" />
 
