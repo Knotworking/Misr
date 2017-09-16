@@ -1,4 +1,4 @@
-package com.knotworking.misr
+package com.knotworking.misr.home
 
 import com.knotworking.misr.databinding.ActivityHomeBinding
 import java.util.*

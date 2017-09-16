@@ -1,4 +1,4 @@
-package com.knotworking.misr
+package com.knotworking.misr.home
 
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.view.Menu
 import android.view.MenuItem
+import com.knotworking.misr.BaseActivity
+import com.knotworking.misr.R
+import com.knotworking.misr.SetupActivity
+import com.knotworking.misr.Utils
 import com.knotworking.misr.databinding.ActivityHomeBinding
 import com.knotworking.misr.timer.TimerActivity
 import com.knotworking.misr.utils.InputFilterMinMax
@@ -26,6 +30,7 @@ class HomeActivity : BaseActivity() {
             startActivity(Intent(this, TimerActivity::class.java))
         })
 
+        binding.conversion = ConversionViewModel()
         binding.minutesEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
         binding.secondsEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
     }

@@ -9,6 +9,10 @@
             name="user"
             type="com.knotworking.misr.User" />
 
+        <variable
+            name="conversion"
+            type="com.knotworking.misr.home.ConversionViewModel"/>
+
     </data>
 
     <RelativeLayout
@@ -43,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="HH"
+                android:text="@={conversion.hours}"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxEms="10"
@@ -56,6 +61,7 @@
                 android:ems="2"
                 android:gravity="center"
                 android:hint="MM"
+                android:text="@={conversion.minutes}"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="2"
@@ -68,6 +74,7 @@
                 android:ems="2"
                 android:gravity="center"
                 android:hint="SS"
+                android:text="@={conversion.seconds}"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="2" />
@@ -92,11 +99,13 @@
             android:id="@+id/money_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Money"
-            android:inputType="numberSigned"
-            android:textSize="18sp"
+            android:layout_alignRight="@id/hhMmSs_layout"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/currency_textView" />
+            android:layout_toRightOf="@+id/currency_textView"
+            android:hint="Money"
+            android:text="@={conversion.money}"
+            android:inputType="numberSigned"
+            android:textSize="18sp" />
 
 
         <android.support.design.widget.FloatingActionButton

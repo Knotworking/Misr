@@ -1,4 +1,4 @@
-package com.knotworking.misr
+package com.knotworking.misr.home
 
 import android.databinding.BindingAdapter
 import android.widget.TextView
