@@ -4,6 +4,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.text.InputFilter
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.knotworking.misr.BaseActivity
@@ -33,6 +34,7 @@ class HomeActivity : BaseActivity() {
         binding.conversionValues = ConversionValues()
         binding.minutesEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
         binding.secondsEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -56,6 +56,13 @@
                 android:minEms="2"
                 android:nextFocusForward="@+id/minutes_editText" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=":"
+                android:gravity="center"
+                android:textSize="20sp"/>
+
             <EditText
                 android:id="@+id/minutes_editText"
                 android:layout_width="wrap_content"
@@ -70,6 +77,13 @@
                 android:inputType="number"
                 android:maxLength="2"
                 android:nextFocusForward="@+id/seconds_editText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=":"
+                android:gravity="center"
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/seconds_editText"
@@ -112,7 +126,7 @@
             android:text="@={conversionValues.moneyString}"
             app:fromMoney="@{conversionValues}"
             app:salary="@{user.salary}"
-            android:inputType="numberSigned"
+            android:inputType="numberDecimal"
             android:textSize="18sp" />
 
 
