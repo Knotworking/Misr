@@ -35,6 +35,9 @@ class HomeActivity : BaseActivity() {
         binding.minutesEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
         binding.secondsEditText.filters = arrayOf<InputFilter>(InputFilterMinMax("0", "60"))
 
+        binding.clearMoneyButton.setOnClickListener({
+            binding.conversionValues = ConversionValues()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

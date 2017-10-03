@@ -5,6 +5,10 @@
     <string name="salary">salary</string>
     <string name="action_user">User</string>
     <string name="button_start_timer">Start Timer</string>
+    <string name="button_start">Start</string>
+    <string name="button_stop">Stop</string>
+    <string name="button_resume">Resume</string>
+    <string name="button_reset">Reset</string>
 
     <string-array name="currency_array">
         <item>$</item>

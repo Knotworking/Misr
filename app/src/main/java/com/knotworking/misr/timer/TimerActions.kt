@@ -5,7 +5,9 @@ package com.knotworking.misr.timer
  */
 interface TimerActions {
 
-    fun onStartClick()
+    fun onStartStopClick()
 
     fun onResetClick()
+
+    fun isTimerRunning(): Boolean
 }

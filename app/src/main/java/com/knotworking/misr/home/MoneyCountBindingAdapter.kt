@@ -2,6 +2,7 @@ package com.knotworking.misr.home
 
 import android.databinding.BindingAdapter
 import android.widget.TextView
+import com.knotworking.misr.Utils
 import java.text.DecimalFormat
 import java.util.*
 
@@ -16,9 +17,7 @@ object MoneyCountBindingAdapter {
     @JvmStatic
     @BindingAdapter(value = *arrayOf("salary", "currency"), requireAll = true)
     fun setDailyCount(textView: TextView, salary: Float, currency: String) {
-        val decimalFormat = DecimalFormat.getInstance()
-        decimalFormat.minimumFractionDigits = 2
-        decimalFormat.maximumFractionDigits = 2
+        val decimalFormat = Utils.getMoneyFormat(true)
         textView.text = "Earned so far today: ${currency + decimalFormat.format(getMoneyEarnedSoFarToday(salary))}"
     }
 

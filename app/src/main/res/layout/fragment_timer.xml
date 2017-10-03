@@ -34,6 +34,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:textColor="#ac9898"
+            android:textSize="62sp"
+            android:textStyle="bold"
             app:currency="@{user.currency}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -41,9 +44,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:salary="@{user.salary}"
             app:timeSpent="@{time.spent}"
-            android:textSize="62sp"
-            android:textStyle="bold"
-            android:textColor="#ac9898"
             tools:text="$5.50" />
 
         <Button
@@ -51,11 +51,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{view -> action.onStartClick()}"
-            android:text="Start"
+            android:onClick="@{view -> action.onStartStopClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/resetButton" />
+            app:layout_constraintRight_toLeftOf="@+id/resetButton"
+            app:timeSpent="@{time.spent}"
+            app:isTimerRunning="@{action.isTimerRunning()}" />
 
         <Button
             android:id="@+id/resetButton"
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:onClick="@{view -> action.onResetClick()}"
-            android:text="Stop"
+            android:text="@string/button_reset"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/stopStartButton"
             app:layout_constraintRight_toRightOf="parent" />

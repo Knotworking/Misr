@@ -8,6 +8,8 @@ import com.knotworking.misr.Constants.MILLIS_IN_SECOND
 import com.knotworking.misr.Constants.MINUTES_IN_HOUR
 import com.knotworking.misr.Constants.SECONDS_IN_MINUTE
 import com.knotworking.misr.Constants.WORKING_HOURS_IN_MONTH
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 
 /**
@@ -29,4 +31,11 @@ object Utils {
     fun hoursFromSeconds(seconds: Int): Float = seconds.toFloat() / SECONDS_IN_MINUTE / MINUTES_IN_HOUR
 
     fun hoursFromMinutes(minutes: Int): Float = minutes.toFloat() / MINUTES_IN_HOUR
+
+    fun getMoneyFormat(commaSeparated: Boolean): NumberFormat {
+        val decimalFormat = if (commaSeparated) DecimalFormat("#.#") else DecimalFormat.getInstance()
+        decimalFormat.minimumFractionDigits = 2
+        decimalFormat.maximumFractionDigits = 2
+        return decimalFormat
+    }
 }

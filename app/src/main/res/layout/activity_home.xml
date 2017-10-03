@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="user"
             type="com.knotworking.misr.User" />
@@ -128,6 +130,17 @@
             app:salary="@{user.salary}"
             android:inputType="numberDecimal"
             android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/clear_money_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_clear_black_24dp"
+            android:layout_alignBottom="@id/money_editText"
+            android:layout_alignTop="@id/money_editText"
+            android:layout_toRightOf="@id/money_editText"
+            android:tint="@color/colorMaterialGrey600"
+            android:visibility='@{conversionValues.moneyString != "" ? View.VISIBLE : View.GONE}'/>
 
 
         <android.support.design.widget.FloatingActionButton

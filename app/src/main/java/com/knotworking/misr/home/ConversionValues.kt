@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.widget.EditText
 import android.widget.Toast
 import com.knotworking.misr.BR
+import com.knotworking.misr.Utils
 
 /**
  * Created on 03/09/17.
@@ -21,13 +22,16 @@ data class ConversionValues(
         @Bindable
         var money: Float? = null) : BaseObservable() {
 
-    fun getHoursString() = hours?.toString()
+    fun getHoursString() = if (hours != null && hours!! > 0) hours.toString() else ""
 
-    fun getMinutesString() = minutes?.toString()
+    fun getMinutesString() = if (minutes != null && minutes!! > 0) minutes.toString() else ""
 
-    fun getSecondsString() = seconds?.toString()
+    fun getSecondsString() = if (seconds != null && seconds!! > 0) seconds.toString() else ""
 
-    fun getMoneyString() = money?.toString()
+    fun getMoneyString() = if (money != null && money!! > 0f) {
+        val moneyFormat = Utils.getMoneyFormat(false)
+        moneyFormat.format(money)
+    } else ""
 
     fun setHoursString(hours: String) {
         if (!TextUtils.isEmpty(hours)) {

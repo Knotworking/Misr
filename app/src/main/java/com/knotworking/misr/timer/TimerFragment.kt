@@ -22,7 +22,7 @@ class TimerFragment : BaseFragment(), TimerActions {
 
     private var timer = Timer()
     private val time = Time()
-    private var isTimerRunning = false
+    private var timerRunning = false
     private lateinit var binding: FragmentTimerBinding
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,19 +34,19 @@ class TimerFragment : BaseFragment(), TimerActions {
         super.onActivityCreated(savedInstanceState)
 
         setTime(savedInstanceState)
-        isTimerRunning = savedInstanceState?.getBoolean(TIMER_RUNNING) ?: false
+        timerRunning = savedInstanceState?.getBoolean(TIMER_RUNNING) ?: false
         binding.user = getUser()
         binding.time = time
         binding.action = this
 
-        if (isTimerRunning) startTimer()
+        if (timerRunning) startTimer()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         outState?.putLong(LAST_TICK, time.lastTick)
         outState?.putLong(TIME_SPENT, time.spent)
-        outState?.putBoolean(TIMER_RUNNING, isTimerRunning)
+        outState?.putBoolean(TIMER_RUNNING, timerRunning)
     }
 
     override fun onPause() {
@@ -54,26 +54,34 @@ class TimerFragment : BaseFragment(), TimerActions {
         timer.cancel()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onStartClick() {
-        startTimer()
-        Toast.makeText(context, "lastTick timer", Toast.LENGTH_SHORT).show()
+    override fun onStartStopClick() {
+        if (timerRunning) {
+            stopTimer()
+        } else {
+            startTimer()
+        }
+        time.notifyChange()
     }
 
     private fun startTimer() {
         timer = Timer()
-        isTimerRunning = true
+        timerRunning = true
         time.lastTick = System.currentTimeMillis()
         timer.schedule(MoneyTimer(binding), 0, TimeUnit.SECONDS.toMillis(1))
     }
 
-    override fun onResetClick() {
+    private fun stopTimer() {
         timer.cancel()
-        Toast.makeText(context, "reset timer", Toast.LENGTH_SHORT).show()
+        timerRunning = false
     }
+
+    override fun onResetClick() {
+        stopTimer()
+        time.spent = 0
+        time.notifyChange()
+    }
+
+    override fun isTimerRunning(): Boolean = timerRunning
 
     private fun setTime(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
