@@ -22,8 +22,12 @@ object EditTextBindingAdapters {
             hours += if (conversionValues.minutes != null) Utils.hoursFromMinutes(conversionValues.minutes!!) else 0f
             hours += if (conversionValues.seconds != null) Utils.hoursFromSeconds(conversionValues.seconds!!) else 0f
 
-            conversionValues.money = Utils.payPerHour(salary) * hours
-            conversionValues.notifyChange()
+            val newMoney = Utils.payPerHour(salary) * hours
+            //FIXME, only if changed
+            if (conversionValues.money != newMoney) {
+                conversionValues.money = newMoney
+                conversionValues.notifyChange()
+            }
         }
     }
 
@@ -34,20 +38,30 @@ object EditTextBindingAdapters {
             Log.i("TAG", "money changed")
 
             //TODO refactor
+            var timeChanged = false
             var time = conversionValues.money?.div(Utils.payPerHour(salary))
             if (time != null) {
 
                 var temp = time.toInt()
+                if (conversionValues.hours != temp) {
+                    timeChanged = true
+                }
                 conversionValues.hours = temp
                 time -= temp
 
                 time *= MINUTES_IN_HOUR
                 temp = time.toInt()
+                if (conversionValues.minutes != temp) {
+                    timeChanged = true
+                }
                 conversionValues.minutes = temp
                 time -= temp
 
                 time *= SECONDS_IN_MINUTE
                 temp = time.toInt()
+                if (conversionValues.seconds != temp) {
+                    timeChanged = true
+                }
                 conversionValues.seconds = temp
 
             } else {
@@ -56,7 +70,12 @@ object EditTextBindingAdapters {
                 conversionValues.seconds = null
             }
 
-            conversionValues.notifyChange()
+
+
+            //FIXME, only if changed
+            if (timeChanged) {
+                conversionValues.notifyChange()
+            }
         }
     }
 }

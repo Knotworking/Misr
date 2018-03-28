@@ -8,6 +8,7 @@ import java.util.*
  */
 class MoneyClock(val binding: ActivityHomeBinding) : TimerTask() {
     override fun run() {
+        //TODO find better way to just notify just clock
         binding.user.notifyChange()
     }
 }

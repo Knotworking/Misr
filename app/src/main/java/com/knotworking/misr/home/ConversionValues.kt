@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.knotworking.misr.BR
 import com.knotworking.misr.Utils
+import java.text.NumberFormat
 
 /**
  * Created on 03/09/17.
@@ -65,6 +66,8 @@ data class ConversionValues(
 
     fun setMoneyString(money: String) {
         if (!TextUtils.isEmpty(money)) {
+            //FIXME crashes for DE number format.
+            // will be fixed by refactoring conversion logic
             this.money = money.toFloat()
         } else {
             this.money = 0f
